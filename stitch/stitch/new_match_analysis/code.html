@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Match Analysis | MatchPoint</title>
+<!-- Fonts and Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#006c49",
+                    "outline-variant": "#c3c6d6",
+                    "inverse-on-surface": "#eff1f3",
+                    "primary-fixed-dim": "#b2c5ff",
+                    "surface-container": "#eceef0",
+                    "surface": "#f7f9fb",
+                    "on-tertiary-container": "#63f1b4",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "surface-tint": "#0056d2",
+                    "on-secondary-fixed-variant": "#3a485b",
+                    "on-tertiary-fixed": "#002113",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary-fixed": "#d5e3fc",
+                    "secondary-fixed-dim": "#b9c7df",
+                    "on-surface": "#191c1e",
+                    "tertiary": "#005136",
+                    "inverse-primary": "#b2c5ff",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-background": "#191c1e",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "secondary-container": "#d5e3fc",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#2d3133",
+                    "on-surface-variant": "#424654",
+                    "primary-fixed": "#dae2ff",
+                    "surface-container-highest": "#e0e3e5",
+                    "surface-container-high": "#e6e8ea",
+                    "on-error": "#ffffff",
+                    "surface-dim": "#d8dadc",
+                    "background": "#f7f9fb",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#0d1c2e",
+                    "primary": "#0040a1",
+                    "surface-bright": "#f7f9fb",
+                    "secondary": "#515f74",
+                    "surface-variant": "#e0e3e5",
+                    "primary-container": "#0056d2",
+                    "on-primary-fixed": "#001847",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#0040a1",
+                    "on-secondary-container": "#57657a",
+                    "outline": "#737785",
+                    "on-primary-container": "#ccd8ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md docked full-width top-0 z-50 font-manrope antialiased">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-full">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black tracking-tighter text-blue-900 dark:text-blue-100">MatchPoint</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-600 transition-colors" href="#">Dashboard</a>
+<a class="text-blue-700 dark:text-blue-400 font-bold border-b-2 border-blue-700 dark:border-blue-400 pb-1" href="#">Analyze</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-600 transition-colors" href="#">History</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all active:scale-95 duration-200 ease-out text-slate-500">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all active:scale-95 duration-200 ease-out text-slate-500">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden ml-2">
+<img alt="Recruiter Profile" data-alt="Professional headshot of a corporate recruiter in a sharp navy suit against a clean modern office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-DS0fJc2RmlPF4jn8p90BvEH9Xe25YkqPPLpyd_D70FvniAT2KasvoPv7YwNSG7imJFQJbX_bG9qyVA9HlJdbLInzwdiTmikwPmVzkxVNSBzgv30LFX4dXEco2iCC4EM-17kNoyzv1RkTM0TccdeK04lBLmWjWA_TszvS1XZQfj_xGTUrLxKD2ycJLxdhqmWQC8MWgqwbk22OHrVZagKSsdCooE747nURjNZ2lj493U4psyaR5EyHtqhe_Ec5xQdDkUmRFpECYnNX"/>
+</div>
+</div>
+</div>
+<div class="bg-slate-200/50 dark:bg-slate-800/50 h-[1px] w-full"></div>
+</header>
+<main class="flex-grow flex items-stretch pt-0">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-slate-100 dark:bg-slate-900 flex flex-col py-6 gap-8 hidden lg:flex mt-[73px]">
+<div class="px-6 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:translate-x-1 transition-transform hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-r-full font-manrope font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-slate-800 text-blue-700 dark:text-blue-400 shadow-sm rounded-r-full font-manrope font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="Troubleshoot">troubleshoot</span>
+<span>Match Engine</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:translate-x-1 transition-transform hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-r-full font-manrope font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Candidates</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:translate-x-1 transition-transform hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-r-full font-manrope font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Analytics</span>
+</a>
+</div>
+<div class="mt-auto px-6 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:translate-x-1 transition-transform hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-r-full font-manrope font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span>Help Center</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:translate-x-1 transition-transform hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-r-full font-manrope font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Log Out</span>
+</a>
+</div>
+</aside>
+<!-- Content Canvas -->
+<section class="flex-grow lg:ml-64 p-8 md:p-12 mt-[73px]">
+<div class="max-w-6xl mx-auto">
+<header class="mb-12">
+<h1 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2">New Analysis</h1>
+<p class="text-on-surface-variant font-body">Define the target profile and upload candidate artifacts for precision curation.</p>
+</header>
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+<!-- Left: Job Description -->
+<div class="bg-surface-container-low p-8 rounded-xl flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">Job Description</label>
+<span class="text-xs text-primary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="auto_awesome">auto_awesome</span>
+                                AI Assistant Ready
+                            </span>
+</div>
+<div class="flex-grow">
+<textarea class="w-full h-[450px] bg-surface-container-lowest border-0 rounded-xl p-6 text-on-surface placeholder:text-slate-400 focus:ring-2 focus:ring-primary-container font-body leading-relaxed transition-all shadow-sm resize-none" placeholder="Paste the full job specification here... include core competencies, required stack, and cultural expectations."></textarea>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-4 py-2 text-primary font-bold text-sm hover:bg-primary-fixed/30 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="cloud_download">cloud_download</span>
+                                Import from ATS
+                            </button>
+<button class="flex items-center gap-2 px-4 py-2 text-primary font-bold text-sm hover:bg-primary-fixed/30 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="link">link</span>
+                                URL Link
+                            </button>
+</div>
+</div>
+<!-- Right: CV Upload Area -->
+<div class="flex flex-col gap-8">
+<div class="bg-surface-container-low p-8 rounded-xl flex flex-col h-full">
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-6">Candidate Dossiers</label>
+<!-- Drop Zone -->
+<div class="flex-grow flex flex-col items-center justify-center border-2 border-dashed border-outline-variant rounded-xl p-10 bg-surface-container-lowest/50 hover:bg-surface-container-lowest transition-all group">
+<div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-200">
+<span class="material-symbols-outlined text-3xl text-primary" data-icon="upload_file">upload_file</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-2">Drag and Drop CVs</h3>
+<p class="text-on-surface-variant text-center max-w-xs mb-8">Upload up to 50 files (PDF, DOCX). Our engine will parse and extract key indicators automatically.</p>
+<button class="px-8 py-3 bg-primary hover:bg-primary-container text-on-primary font-bold rounded-lg shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
+                                    Browse Files
+                                </button>
+</div>
+<div class="mt-8 flex items-center gap-4 p-4 bg-surface-container-highest/30 rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="info">info</span>
+<p class="text-xs text-on-secondary-fixed-variant leading-tight">By uploading, you agree to our <strong>GDPR-compliant</strong> data processing policy for executive search entities.</p>
+</div>
+</div>
+<!-- CTA Section -->
+<div class="flex items-center justify-end gap-6 pt-4">
+<button class="text-on-surface-variant font-bold hover:text-on-surface transition-colors">Clear All</button>
+<button class="group relative px-12 py-5 bg-gradient-to-br from-primary to-primary-container text-on-primary text-lg font-extrabold rounded-xl shadow-xl shadow-primary/30 active:scale-95 transition-all overflow-hidden">
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center gap-3">
+<span>Start Matching</span>
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</div>
+</button>
+</div>
+</div>
+</div>
+<!-- Subtle Background Element -->
+<div class="mt-16 pt-8 border-t border-slate-200/50">
+<div class="grid grid-cols-3 gap-8 opacity-40 grayscale">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-4xl" data-icon="verified_user">verified_user</span>
+<div class="text-[10px] font-bold uppercase tracking-widest leading-none">Security Verified</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-4xl" data-icon="psychology">psychology</span>
+<div class="text-[10px] font-bold uppercase tracking-widest leading-none">AI Pattern Analysis</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-4xl" data-icon="speed">speed</span>
+<div class="text-[10px] font-bold uppercase tracking-widest leading-none">Real-time Processing</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Contextual FAB (Hidden on this transactional screen as per mandate) -->
+<!-- The FAB is suppressed because this is a Task-Focused/Input screen -->
+</body></html>

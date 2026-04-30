@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Candidate History - MatchPoint</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Inter:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Manrope', sans-serif; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#006c49",
+                        "outline-variant": "#c3c6d6",
+                        "inverse-on-surface": "#eff1f3",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "surface-container": "#eceef0",
+                        "surface": "#f7f9fb",
+                        "on-tertiary-container": "#63f1b4",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "surface-tint": "#0056d2",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "on-tertiary-fixed": "#002113",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary-fixed": "#d5e3fc",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "on-surface": "#191c1e",
+                        "tertiary": "#005136",
+                        "inverse-primary": "#b2c5ff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-background": "#191c1e",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "secondary-container": "#d5e3fc",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "on-surface-variant": "#424654",
+                        "primary-fixed": "#dae2ff",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container-high": "#e6e8ea",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "background": "#f7f9fb",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "primary": "#0040a1",
+                        "surface-bright": "#f7f9fb",
+                        "secondary": "#515f74",
+                        "surface-variant": "#e0e3e5",
+                        "primary-container": "#0056d2",
+                        "on-primary-fixed": "#001847",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#0040a1",
+                        "on-secondary-container": "#57657a",
+                        "outline": "#737785",
+                        "on-primary-container": "#ccd8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container">
+<aside class="h-screen w-64 fixed left-0 top-0 bg-slate-100 dark:bg-slate-900 flex flex-col py-6 gap-8 z-40">
+<div class="px-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-white shadow-lg overflow-hidden">
+<img alt="MatchPoint Logo" data-alt="minimalist professional logo for matchpoint recruitment software with deep blue geometric patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrLPNNqhmzrG7MtdJMrcO0Jg4u4QYsk1yEKB_dEzm8LblsltPKuAa9aDrvAZpm_dn_jdwU1iJt23iqeESvio-MCmkooKWTtLJU8cu0A_M1Al6Xfyc29MWwncYMvY5uaLkyxp5zamCKG2wl3yJLD1a0MdmgeoG-RUT4EvuklJJxHjIiSsx1kD9WscC5BvdbWYYxD_WFOkJdUtoLfbQPcyawLXbG9BHqT9RjFy5x438RM2OB6JKvURvwXZNmAEibAxtpCm4sE2F2Dx66"/>
+</div>
+<div>
+<h1 class="text-xl font-bold text-blue-900 dark:text-white leading-tight font-headline">MatchPoint</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Precision Curator</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:translate-x-1 transition-transform font-manrope font-medium text-sm hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-r-full" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Overview
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:translate-x-1 transition-transform font-manrope font-medium text-sm hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-r-full" href="#">
+<span class="material-symbols-outlined" data-icon="Troubleshoot">troubleshoot</span>
+                Match Engine
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:translate-x-1 transition-transform font-manrope font-medium text-sm hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-r-full" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+                Candidates
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-slate-800 text-blue-700 dark:text-blue-400 shadow-sm rounded-r-full font-manrope font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                Analytics
+            </a>
+</nav>
+<div class="px-6">
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-white py-3 rounded-xl font-bold text-sm shadow-md hover:scale-95 transition-all duration-200">
+                New Analysis
+            </button>
+</div>
+<div class="px-4 mt-auto space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all rounded-lg font-manrope font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                Help Center
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all rounded-lg font-manrope font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Log Out
+            </a>
+</div>
+</aside>
+<header class="fixed top-0 left-64 right-0 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md z-30 font-manrope antialiased">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-full">
+<div class="flex gap-8 items-center">
+<nav class="hidden md:flex items-center gap-6 text-sm">
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-600 transition-colors" href="#">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-600 transition-colors" href="#">Analyze</a>
+<a class="text-blue-700 dark:text-blue-400 font-bold border-b-2 border-blue-700 dark:border-blue-400 pb-1" href="#">History</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-highest/50 border-none rounded-lg text-sm w-64 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search entries..." type="text"/>
+</div>
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden ring-2 ring-white ring-offset-2 ring-offset-slate-50">
+<img alt="Recruiter Profile" data-alt="professional portrait of a high-end corporate recruiter with a neutral background and professional attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2q_sHdUwtWoLIETLL7KTRxhRylVw5LOfQIeM-FicAQxljnVX9GEah5VLqANw07-upTga8oT7oZpyUsYMD3b9kCmu-iH1vbAWV6UFDO9d2_8C_23Kp2p4YE3qvClUljxEbYEXV9cVvZLvw5gYC7owLYKcIIId4AMPZITDGy7kKxSMQ6rEEf4-l9twNJ29nhktaZGV64FQ4DTUvlxYkkj87Mq2mnXrk71ZBktpLViIMFH7pOaMBUYzBcFcILWhFqtgjNW2M9g1Z61up"/>
+</div>
+</div>
+</div>
+<div class="bg-slate-200/50 dark:bg-slate-800/50 h-[1px] w-full"></div>
+</header>
+<main class="ml-64 pt-24 px-8 pb-12 min-h-screen">
+<section class="mb-10">
+<div class="flex items-end justify-between mb-8">
+<div>
+<h2 class="text-4xl font-black tracking-tight text-on-surface font-headline">Candidate History</h2>
+<p class="text-on-surface-variant mt-2 max-w-xl">Review and manage past candidate evaluations. Data is curated based on historical match scores and job relevance.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2.5 bg-surface-container-lowest text-primary font-semibold text-sm rounded-lg hover:bg-primary-fixed/30 transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="file_download">file_download</span>
+                        Export Data
+                    </button>
+<button class="bg-gradient-to-r from-primary to-primary-container text-white px-6 py-2.5 rounded-lg font-bold text-sm shadow-md hover:shadow-lg transition-all active:scale-95">
+                        Batch Action
+                    </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+<div class="bg-surface-container-low p-6 rounded-xl space-y-4">
+<label class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Job Title Filter</label>
+<div class="relative">
+<select class="w-full bg-surface-container-highest border-none rounded-lg text-sm appearance-none py-3 px-4 focus:ring-2 focus:ring-primary/20">
+<option>All Job Titles</option>
+<option>Senior Software Engineer</option>
+<option>Product Design Lead</option>
+<option>VP of Operations</option>
+<option>Strategy Consultant</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400" data-icon="unfold_more">unfold_more</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl space-y-4">
+<label class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Minimum Match Score</label>
+<div class="flex items-center gap-4">
+<input class="flex-1 h-1.5 bg-outline-variant rounded-lg appearance-none cursor-pointer accent-primary" max="100" min="0" type="range" value="75"/>
+<span class="text-sm font-bold text-primary font-headline">75%</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl space-y-4">
+<label class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Timeframe</label>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 bg-surface-container-lowest text-xs font-bold rounded-lg border border-transparent text-on-surface-variant hover:text-primary transition-colors">Last 30d</button>
+<button class="px-3 py-1.5 bg-primary text-white text-xs font-bold rounded-lg border border-transparent shadow-sm">All Time</button>
+<button class="px-3 py-1.5 bg-surface-container-lowest text-xs font-bold rounded-lg border border-transparent text-on-surface-variant hover:text-primary transition-colors">Custom</button>
+</div>
+</div>
+<div class="bg-primary/5 p-6 rounded-xl border border-primary/10 flex items-center justify-between">
+<div>
+<p class="text-primary font-bold text-2xl font-headline">1,482</p>
+<p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Total Candidates</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Candidate Name</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Job Title</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-center">Score</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Match Date</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y-0">
+<tr class="hover:bg-surface-container-high transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<img alt="Candidate" class="w-10 h-10 rounded-lg object-cover" data-alt="headshot of a smiling professional man in business casual attire with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK5e4DxpIoZKOq0cqFjZ-2-BdhF4QiV-SWrJk70eCh7HYg3NVdP5xcaJUfTuQ29XQ_5FevMkSZNzXvdD89XLP7fCiKHwLnagcr3JUrDRkai6Isv7iCkWbPMhtRY1XhiO5EKbF9N56DY6ILzFfXVPr3Drt3ik_OyUY04goHQEPazyAiZew9w4CDNzsWnedpC4eQu_j1QOvy36dKPyan33n9aCMIS6Su33jQMBBWu9flPkWfaflt_0o8Nf9OENC8NE0iq19ezwslvRxQ"/>
+<div>
+<p class="font-bold text-on-surface font-headline">Alexander Thorne</p>
+<p class="text-xs text-on-surface-variant">alex.t@example.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-secondary-container/30 text-on-secondary-container text-xs font-bold rounded-full">Senior Software Engineer</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col items-center gap-1">
+<div class="w-16 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-tertiary to-tertiary-container shadow-[0_0_8px_rgba(0,81,54,0.4)]" style="width: 94%"></div>
+</div>
+<span class="text-xs font-black text-tertiary">94%</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">Oct 12, 2023</td>
+<td class="px-6 py-5 text-right space-x-2">
+<button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-all" title="View Details">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 text-error hover:bg-error/10 rounded-lg transition-all" title="Delete Entry">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<img alt="Candidate" class="w-10 h-10 rounded-lg object-cover" data-alt="professional headshot of a confident woman with a modern hairstyle and neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo4sALTE5YOjbwOIETbRm6LF37j_XkEYkvJZrjjzQe-Lxg6mqI0WGPvQ4LfwCTulEvbV2xrUPzB9IlAXwWqOQsXlGTXRRTA-Ucn16xZGUKUAaHWLZYK2BKif3bIMYQOFrVR4yhHbVTauAkIuCf4KQfdhR1LonaKz8xOAa9hkfl9OylfmeOCovvQSanBFpjey0Bb0d3uvMXMihWHfZ16ysybwCfIHJMcXzzlGVZMpVasSjAqUxW2jepPn4jyPswUBWBglU4fPEq8wpG"/>
+<div>
+<p class="font-bold text-on-surface font-headline">Sarah Jenkins</p>
+<p class="text-xs text-on-surface-variant">s.jenkins@corp.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-secondary-container/30 text-on-secondary-container text-xs font-bold rounded-full">Product Design Lead</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col items-center gap-1">
+<div class="w-16 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-tertiary to-tertiary-container" style="width: 88%"></div>
+</div>
+<span class="text-xs font-black text-tertiary">88%</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">Oct 10, 2023</td>
+<td class="px-6 py-5 text-right space-x-2">
+<button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-all" title="View Details">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 text-error hover:bg-error/10 rounded-lg transition-all" title="Delete Entry">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<img alt="Candidate" class="w-10 h-10 rounded-lg object-cover" data-alt="portrait of a focused professional man in an office setting with slight depth of field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkM4sid22oHnrGvUuCAZCPB_42iquIWab2oKPwo_bJQPlpkQ7mp1ChZ91n--JQydT0dk-uJVGULz-lDr0WKKLpyypkw4sF77LlbjYaVHbuATJ_DN7-s9B5rvx6Lo97SPbi6Vjgs-UoCaM3RNQBx-N6l2VqkPCGwtFgETCsRhV1l9IKTjSKLVUqYLuZTsjO9X9rfWksgJ-Wyv5pL2ypRV_uAzvKKx56Jtf78ffjHD2yuAEOp4ULhNGGBABs9b1Hv9VWRl3XjJdfc5Zm"/>
+<div>
+<p class="font-bold text-on-surface font-headline">Michael Chen</p>
+<p class="text-xs text-on-surface-variant">m.chen@techglobal.net</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-secondary-container/30 text-on-secondary-container text-xs font-bold rounded-full">VP of Operations</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col items-center gap-1">
+<div class="w-16 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-primary-container" style="width: 72%"></div>
+</div>
+<span class="text-xs font-black text-primary">72%</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">Oct 05, 2023</td>
+<td class="px-6 py-5 text-right space-x-2">
+<button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-all" title="View Details">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 text-error hover:bg-error/10 rounded-lg transition-all" title="Delete Entry">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<img alt="Candidate" class="w-10 h-10 rounded-lg object-cover" data-alt="professional headshot of a smiling woman with glasses in a light airy office space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk0hk50ftwsloI92oLYwpQcIsT2SMSw4FQ8gvmv3zQ19GBBLVynSCtPcuEojNTbHNo3ZwbCBJnC1_THg8FQlyGNS7umwcqWSJ-wzo7dsdwFy6O0ErBocZcFOr1nJDYNPv3XgfUkpVnK8rjdUgUjhL9UJM-A0cBcMhfRwDyNs1r5Hh5GzQIHgIXnsvglE9e5_9lrIOqTKCXeUGohQ556LSVLLqnMbatxv1CwlfB_oaHV3RR4unhQ0UM51JXfr7LCcSLpUYnbwdz5hZV"/>
+<div>
+<p class="font-bold text-on-surface font-headline">Elena Rodriguez</p>
+<p class="text-xs text-on-surface-variant">elena.rod@consult.io</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-secondary-container/30 text-on-secondary-container text-xs font-bold rounded-full">Strategy Consultant</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col items-center gap-1">
+<div class="w-16 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-tertiary to-tertiary-container" style="width: 91%"></div>
+</div>
+<span class="text-xs font-black text-tertiary">91%</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">Sep 28, 2023</td>
+<td class="px-6 py-5 text-right space-x-2">
+<button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-all" title="View Details">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 text-error hover:bg-error/10 rounded-lg transition-all" title="Delete Entry">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<img alt="Candidate" class="w-10 h-10 rounded-lg object-cover" data-alt="close up headshot of a male professional with short hair and a determined expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCs5-9u3prBBzOVtJihV6aNH7LmmFghIJkqQeoQjMCXsUWosTo2bnWzEBx2WBlynX9hAIRPPqSVJKgKQTGHdvjqeEGAK24WEHrmTmG-56QPEETc2UyWtKeltlPF39NZ-Z2LsoH9vOrRo_aY7SAIRNJAzfOLWODGzG2MU_AUtSy-WK3F2aK8Hwqrat4xOzD3oD6LYe-9r3AxAWX6X9uhjUM5aWp937GbWyd3C_fdBGx6hTao3YJc3UrgNh44-yWcD26UOjFJfVPTyKMb"/>
+<div>
+<p class="font-bold text-on-surface font-headline">David Miller</p>
+<p class="text-xs text-on-surface-variant">d.miller@fintech.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-secondary-container/30 text-on-secondary-container text-xs font-bold rounded-full">Senior Software Engineer</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col items-center gap-1">
+<div class="w-16 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-primary-container" style="width: 68%"></div>
+</div>
+<span class="text-xs font-black text-primary">68%</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">Sep 22, 2023</td>
+<td class="px-6 py-5 text-right space-x-2">
+<button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-all" title="View Details">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 text-error hover:bg-error/10 rounded-lg transition-all" title="Delete Entry">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="px-6 py-4 bg-surface-container-low flex justify-between items-center">
+<p class="text-xs text-on-surface-variant font-medium italic">Showing 1 to 5 of 1,482 candidates</p>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-lowest text-on-surface-variant hover:text-primary transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-white text-xs font-bold">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-lowest text-on-surface-variant hover:text-primary transition-colors text-xs font-bold">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-lowest text-on-surface-variant hover:text-primary transition-colors text-xs font-bold">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-lowest text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="relative rounded-2xl overflow-hidden h-64 group shadow-xl">
+<img alt="Recruitment Analytics" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="professional high-angle view of a team looking at recruitment data analytics on large screens in a modern office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDboFNrmj1LZiMw9n_n1Fy8KXUOuC2xBFVf0cgGdq7C4hcevZAy-ygXBMRUVVHQbJTleX5o2KwrJcKwSLlhRiMB3_-KTnplT4Z3IYMMsTi8OvKQxf6-9kScuqP5p21GL-8Oupe8BaEzpVds7l6R3VUuX2vIxNyqM4SM0A9PWB7edJ2TSq9eHfyOH-BtKDYo0eO2cyVY31OOehn6uujt4NtR0MPZM49_KJzzUUX8h1OhUYK5bU9bi_TY8m0TJmt_FJw6ybVIXyQgRngn"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-primary/20 p-8 flex flex-col justify-end">
+<h3 class="text-2xl font-black text-white font-headline leading-tight">Advanced Talent Insights</h3>
+<p class="text-on-primary-container text-sm mt-2">Unlock deeper patterns in your candidate history with AI-powered trend analysis.</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 bg-tertiary-container/10 text-tertiary-container rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+</div>
+<div>
+<h3 class="text-xl font-bold font-headline">Precision Ranking</h3>
+<p class="text-on-surface-variant text-sm">Automated scoring ensures fair evaluation.</p>
+</div>
+</div>
+<p class="text-on-surface-variant mb-6 text-sm italic leading-relaxed">"MatchPoint has fundamentally changed how we handle executive search. The historical accuracy of the match engine allows us to revisit high-potential candidates with confidence."</p>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-300"></div>
+<div>
+<p class="text-xs font-bold text-on-surface">Director of Talent Acquisition</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Fortune 500 Partner</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>
