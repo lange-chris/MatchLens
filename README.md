@@ -1,6 +1,6 @@
-# MatchPoint
+# MatchLens
 
-MatchPoint is an AI-powered tool that compares a CV with a job advertisement to calculate a precision matching score. Built for the modern job seeker, it provides instant alignment analytics to help you optimize your professional profile.
+MatchLens is an AI-powered tool that compares a CV with a job advertisement to calculate a precision matching score. Built for the modern job seeker, it provides instant alignment analytics to help you optimize your professional profile.
 
 ## Features
 

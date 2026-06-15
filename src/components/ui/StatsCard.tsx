@@ -27,7 +27,7 @@ export function StatsCard({ label, value, subtext, trend, icon, variant = "prima
   };
 
   return (
-    <div className={`bg-surface-container-lowest p-8 rounded-xl shadow-sm border-l-4 ${borderColors[variant]} relative overflow-hidden group transition-all hover:shadow-md`}>
+    <div className={`bg-surface p-8 rounded-2xl shadow-sm border border-black/5 relative overflow-hidden group transition-all hover:shadow-md`}>
       <div className={`absolute -right-4 -bottom-4 ${iconBaseColors[variant]} scale-150 transform transition-transform group-hover:scale-[1.7]`}>
         <span className="material-symbols-outlined text-9xl">{icon}</span>
       </div>

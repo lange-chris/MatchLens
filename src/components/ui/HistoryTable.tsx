@@ -68,12 +68,12 @@ export function HistoryTable({ initialCandidates }: HistoryTableProps) {
         {/* Filters Row */}
         <div className="bg-background p-4 border-b border-border flex flex-wrap gap-4 items-center">
           <span className="material-symbols-outlined text-text-muted">filter_list</span>
-          <select className="bg-white border border-border rounded px-4 py-2 text-sm text-text-main shadow-sm appearance-none focus:outline-none focus:border-primary">
+          <select className="bg-white border border-border rounded-full px-4 py-2 text-sm text-text-main shadow-sm appearance-none focus:outline-none focus:border-primary">
             <option>All Disciplines</option>
             <option>Engineering</option>
             <option>Design</option>
           </select>
-          <select className="bg-white border border-border rounded px-4 py-2 text-sm text-text-main shadow-sm appearance-none focus:outline-none focus:border-primary">
+          <select className="bg-white border border-border rounded-full px-4 py-2 text-sm text-text-main shadow-sm appearance-none focus:outline-none focus:border-primary">
             <option>Any Score</option>
             <option>&gt; 80% Match</option>
             <option>&gt; 90% Match</option>
@@ -132,7 +132,7 @@ export function HistoryTable({ initialCandidates }: HistoryTableProps) {
                     <div className="flex items-center justify-end gap-2">
                       <Link
                         href={`/results/${entry.id}`}
-                        className="px-4 py-2 bg-primary/10 text-primary hover:bg-primary hover:text-white text-sm font-bold rounded flex items-center gap-1.5 transition-colors"
+                        className="px-4 py-2 bg-primary/10 text-primary hover:bg-secondary hover:text-white text-sm font-bold rounded-full flex items-center gap-1.5 transition-colors"
                       >
                         View <span className="material-symbols-outlined text-sm">visibility</span>
                       </Link>
@@ -214,7 +214,7 @@ export function HistoryTable({ initialCandidates }: HistoryTableProps) {
                 id="delete-cancel-btn"
                 onClick={() => setDeleteTarget(null)}
                 disabled={isPending}
-                className="flex-1 py-3 rounded-xl border border-border text-text-main font-bold text-sm hover:bg-background transition-colors disabled:opacity-50"
+                className="flex-1 py-3 rounded-full border border-border text-text-main font-bold text-sm hover:bg-background transition-colors disabled:opacity-50"
               >
                 Cancel
               </button>
@@ -222,7 +222,7 @@ export function HistoryTable({ initialCandidates }: HistoryTableProps) {
                 id="delete-confirm-btn"
                 onClick={handleDeleteConfirm}
                 disabled={isPending}
-                className="flex-1 py-3 rounded-xl bg-red-500 text-white font-bold text-sm hover:bg-red-600 active:scale-[0.98] transition-all disabled:opacity-60 flex items-center justify-center gap-2"
+                className="flex-1 py-3 rounded-full bg-red-500 text-white font-bold text-sm hover:bg-red-600 active:scale-[0.98] transition-all disabled:opacity-60 flex items-center justify-center gap-2"
               >
                 {isPending ? (
                   <>

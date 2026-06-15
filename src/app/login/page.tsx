@@ -79,7 +79,7 @@ export default function LoginPage() {
 
         {/* Footer note */}
         <p className="relative text-white/40 text-sm">
-          © 2025 MatchPoint · For authorized recruiters only
+          © 2025 MatchLens · For authorized recruiters only
         </p>
       </div>
 

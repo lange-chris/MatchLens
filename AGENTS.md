@@ -1,7 +1,7 @@
-# AGENTS.md - MatchPoint (Recruiter Edition)
+# AGENTS.md - MatchLens (Recruiter Edition)
 
 ## Project
-Build a polished recruiter tool called `MatchPoint`. This tool allows recruiters to compare an applicant's CV against a Job Description (JD), calculate a match score, and store everything for review.
+Build a polished recruiter tool called `MatchLens`. This tool allows recruiters to compare an applicant's CV against a Job Description (JD), calculate a match score, and store everything for review.
 
 ## Goal
 - **Recruiter Workflow:** Input a Job Ad and upload a candidate's CV.

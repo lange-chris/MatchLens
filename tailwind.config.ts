@@ -11,10 +11,10 @@ const config: Config = {
       colors: {
         background: "#FAFAFA",
         surface: "#FFFFFF",
-        primary: "#00BCD4",       // Turquoise
-        "primary-hover": "#00ACC1",
-        secondary: "#FF4081",     // Pink
-        "secondary-hover": "#F50057",
+        primary: "#79AA9B",       // Sage Green (academics)
+        "primary-hover": "#659687",
+        secondary: "#342259",     // Deep Purple (academics)
+        "secondary-hover": "#251744",
         text: {
           main: "#212121",
           muted: "#757575",

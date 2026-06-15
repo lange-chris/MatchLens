@@ -37,9 +37,10 @@ export async function middleware(request: NextRequest) {
 
   if (!user && !isPublicPath) {
     // Not logged in → redirect to login
-    const url = request.nextUrl.clone()
-    url.pathname = '/login'
-    return NextResponse.redirect(url)
+    // TEMPORARILY DISABLED
+    // const url = request.nextUrl.clone()
+    // url.pathname = '/login'
+    // return NextResponse.redirect(url)
   }
 
   if (user && pathname === '/login') {
