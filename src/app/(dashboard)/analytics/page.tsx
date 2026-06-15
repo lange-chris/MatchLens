@@ -265,7 +265,13 @@ export default async function AnalyticsPage({ searchParams }: { searchParams: an
                              </div>
                              <div>
                                <p className="text-sm font-bold text-text-main">{entry.name}</p>
-                               <p className="text-[10px] text-text-muted">{entry.email}</p>
+                               {entry.current_position && entry.current_employer ? (
+                                 <p className="text-[10px] text-text-muted truncate max-w-[250px]" title={`${entry.current_position} @ ${entry.current_employer}`}>
+                                   {entry.current_position} @ {entry.current_employer}
+                                 </p>
+                               ) : (
+                                 <p className="text-[10px] text-text-muted">{entry.email}</p>
+                               )}
                              </div>
                           </div>
                         </td>

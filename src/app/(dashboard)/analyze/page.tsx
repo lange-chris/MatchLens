@@ -26,6 +26,22 @@ export default function AnalyzePage() {
   const supabase = createClient();
   const { t, language } = useLanguage();
 
+  const loadingMessagesDe = ["Analysiere Profil...", "Gleiche Skills ab...", "Bewerte Erfahrung...", "Extrahiere Details...", "Berechne Score..."];
+  const loadingMessagesEn = ["Analyzing profile...", "Matching skills...", "Evaluating experience...", "Extracting details...", "Calculating score..."];
+  const loadingMessages = language === 'de' ? loadingMessagesDe : loadingMessagesEn;
+  const [loadingMessageIndex, setLoadingMessageIndex] = useState(0);
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isUploading) {
+      setLoadingMessageIndex(0); // Reset on start
+      interval = setInterval(() => {
+        setLoadingMessageIndex((prev) => (prev + 1) % loadingMessages.length);
+      }, 2500); // 2.5 seconds feels a bit snappier than 3
+    }
+    return () => clearInterval(interval);
+  }, [isUploading, loadingMessages.length]);
+
   useEffect(() => {
     // Fetch unique existing candidates to populate the dropdown
     async function fetchCandidates() {
@@ -147,6 +163,8 @@ export default function AnalyzePage() {
         name: candidateName || "Unknown Candidate",
         email: "candidate@example.com",
         job_title: matchData.job_title || "Processed Profile",
+        current_position: matchData.current_position || "Unknown",
+        current_employer: matchData.current_employer || "Unknown",
         score: matchData.score,
         jd_content: finalJdText,
         cv_content: "Extracted Document",
@@ -337,7 +355,9 @@ export default function AnalyzePage() {
             {isUploading && (
               <span className="material-symbols-outlined animate-spin">refresh</span>
             )}
-            <span>{isUploading ? t.analyze.analyzing : t.analyze.startMatch}</span>
+            <span className="min-w-[200px] text-center">
+              {isUploading ? loadingMessages[loadingMessageIndex] : t.analyze.startMatch}
+            </span>
           </button>
         </div>
       </div>

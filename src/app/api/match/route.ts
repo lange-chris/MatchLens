@@ -51,6 +51,8 @@ export async function POST(req: Request) {
       {
         "score": <number between 0 and 100 representing the exact match fit>,
         "job_title": "<Extract the specific job title from the JD, or default to 'Professional'>",
+        "current_position": "<Extract the candidate's most recent or current job title from the CV. If none, use 'Unknown Position'>",
+        "current_employer": "<Extract the candidate's most recent or current employer/company from the CV. If none, use 'Unknown Employer'>",
         "analysis_summary": "<A 2-3 sentence professional summary of why they fit or don't fit>",
         "analysis_details": {
           "skills": {
@@ -89,6 +91,8 @@ export async function POST(req: Request) {
         success: true,
         score: parsedData.score,
         job_title: parsedData.job_title,
+        current_position: parsedData.current_position,
+        current_employer: parsedData.current_employer,
         analysis_summary: parsedData.analysis_summary,
         analysis_details: parsedData.analysis_details
     });

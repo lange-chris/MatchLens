@@ -9,6 +9,8 @@ interface Candidate {
   name: string
   email: string
   job_title: string
+  current_position?: string
+  current_employer?: string
   score: number | null
   created_at: string
   cv_url: string | null
@@ -105,7 +107,13 @@ export function HistoryTable({ initialCandidates }: HistoryTableProps) {
                       </div>
                       <div>
                         <p className="font-bold text-text-main">{entry.name}</p>
-                        <p className="text-xs text-text-muted">{entry.email}</p>
+                        {entry.current_position && entry.current_employer ? (
+                          <p className="text-xs text-text-muted truncate max-w-[250px]" title={`${entry.current_position} @ ${entry.current_employer}`}>
+                            {entry.current_position} @ {entry.current_employer}
+                          </p>
+                        ) : (
+                          <p className="text-xs text-text-muted">{entry.email}</p>
+                        )}
                       </div>
                     </div>
                   </td>
