@@ -31,6 +31,7 @@ export function Sidebar() {
     { name: t.sidebar.analyze, href: "/analyze", icon: "auto_awesome" },
     { name: t.sidebar.history, href: "/history", icon: "history" },
     { name: t.sidebar.analytics, href: "/analytics", icon: "monitoring", disabled: false },
+    { name: t.sidebar.jobsearch, href: "/jobsearch", icon: "work" },
   ];
 
   return (

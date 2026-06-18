@@ -11,10 +11,10 @@ export default async function HistoryPage() {
   const historyEntries = candidates || [];
 
   return (
-    <div className="animate-fade-in pb-20 max-w-full px-2">
+    <div className="w-full animate-fade-in pb-20">
       <header className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-display font-black text-text-main">Candidates DB</h1>
+          <h1 className="text-[40px] font-display font-medium text-[#1a1235] mb-2">Candidates DB</h1>
           <p className="text-sm text-text-muted mt-1">Review and manage previously analyzed applications.</p>
         </div>
         <div className="flex gap-4">

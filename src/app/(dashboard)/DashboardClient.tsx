@@ -77,6 +77,12 @@ export function DashboardClient({ recentMatches, totalMatches, calculatedAvg }: 
                       <div>
                         <p className="font-bold text-text-main">{candidate.name}</p>
                         <p className="text-xs text-text-muted">{candidate.job_title}</p>
+                        {candidate.analysis_summary && (
+                          <p className="text-[10px] text-text-muted mt-1 truncate max-w-[200px] md:max-w-xs" title={candidate.analysis_summary}>
+                            <span className="material-symbols-outlined text-[10px] mr-1 text-secondary align-middle">psychology</span>
+                            <span className="align-middle">{candidate.analysis_summary}</span>
+                          </p>
+                        )}
                       </div>
                     </div>
                     

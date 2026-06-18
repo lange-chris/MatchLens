@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { PrintButton } from "@/components/ui/PrintButton";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { ScoreRadar } from "@/components/ui/ScoreRadar";
 
 export function ResultsClient({ candidate, details }: { candidate: any, details: any }) {
   const { t } = useLanguage();
@@ -129,6 +130,13 @@ export function ResultsClient({ candidate, details }: { candidate: any, details:
 
         {/* Right Sidebar */}
         <div className="flex flex-col gap-6">
+          <div className="material-card p-6 border-t-4 border-secondary shadow-sm rounded-2xl">
+            <h3 className="text-sm font-bold uppercase text-secondary mb-4 flex items-center gap-2 border-b border-border pb-2">
+               <span className="material-symbols-outlined">radar</span> {t.results.matchDimensions}
+            </h3>
+            <ScoreRadar categoryScores={details?.category_scores} overallScore={candidate.score} />
+          </div>
+
           <div className="material-card p-6 border-t-4 border-primary shadow-sm rounded-2xl">
             <h3 className="text-sm font-bold uppercase text-primary mb-4 flex items-center gap-2 border-b border-border pb-2">
                <span className="material-symbols-outlined">school</span> {t.results.academicProfile}

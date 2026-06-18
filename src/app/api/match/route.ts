@@ -68,6 +68,13 @@ export async function POST(req: Request) {
             { "label": "Overall Fit", "score": <number> },
             { "label": "Technical Alignment", "score": <number> }
           ],
+          "category_scores": {
+            "skills": <number 0-100>,
+            "experience": <number 0-100>,
+            "industry": <number 0-100>,
+            "job_title": <number 0-100>,
+            "academic_fit": <number 0-100>
+          },
           "academicHighlights": ["<Detail about publications, grants, or education>"],
           "matchExplanation": "<1-2 sentence Explainable AI breakdown explaining exactly why you gave the score you gave.>"
         }

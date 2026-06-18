@@ -5,6 +5,7 @@ export const translations = {
       analyze: 'Analyze CV',
       history: 'History',
       analytics: 'Analytics',
+      jobsearch: 'Job Search',
     },
     dashboard: {
       title: 'Dashboard',
@@ -41,14 +42,15 @@ export const translations = {
       errorUploadFirst: 'Please upload or select a candidate CV first.'
     },
     results: {
-      explainableAIBreakdown: 'Explainable AI Breakdown',
+      explainableAIBreakdown: 'AI Analysis',
       academicProfile: 'Academic Profile',
       noAcademicHighlights: 'No academic highlights available.',
       capabilitiesCheck: 'Capabilities Check',
       verifiedSkills: 'Verified Skills',
       missingGaps: 'Missing / Gaps',
       experienceAlignment: 'Experience Alignment',
-      industryRelevance: 'Industry Relevance'
+      industryRelevance: 'Industry Relevance',
+      matchDimensions: 'Match Radar'
     }
   },
   de: {
@@ -57,6 +59,7 @@ export const translations = {
       analyze: 'Lebenslauf prüfen',
       history: 'Verlauf',
       analytics: 'Statistiken',
+      jobsearch: 'Jobsuche (Talent)',
     },
     dashboard: {
       title: 'Dashboard',
@@ -93,14 +96,15 @@ export const translations = {
       errorUploadFirst: 'Bitte zuerst einen Lebenslauf hochladen oder auswählen.'
     },
     results: {
-      explainableAIBreakdown: 'KI-Begründung (Explainable AI)',
+      explainableAIBreakdown: 'KI-Analyse',
       academicProfile: 'Akademisches Profil',
       noAcademicHighlights: 'Keine akademischen Highlights gefunden.',
       capabilitiesCheck: 'Fähigkeiten-Check',
       verifiedSkills: 'Nachgewiesene Skills',
       missingGaps: 'Fehlend / Lücken',
       experienceAlignment: 'Erfahrungsabgleich',
-      industryRelevance: 'Branchenrelevanz'
+      industryRelevance: 'Branchenrelevanz',
+      matchDimensions: 'Match-Radar'
     }
   }
 };
