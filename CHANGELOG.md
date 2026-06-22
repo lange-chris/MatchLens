@@ -9,6 +9,12 @@ All notable changes to the MatchLens project will be documented in this file.
 - **Real Mock Data**: Scraped the latest job offers directly from academics.com and populated the `mockJobs.ts` with real-world academic listings to improve prototype realism.
 - **AI Feedback Mechanism**: Built an interactive thumbs up/down feedback feature into the Match-Radar modal. Clicking 'thumbs down' expands a contextual micro-survey with user-centric critique pills (e.g. "Skills falsch eingeschätzt", "Ort/Remote falsch gewertet") to gather training data for the matching algorithm.
 
+## [2026-06-18]
+### Added
+- **Top Navigation**: Replaced the vertical sidebar with a horizontal TopNav to mirror the academics.com navigation structure and free up horizontal screen space.
+- **Match-Radar Popover**: The "Radar" modal in the job search is now a sleek, inline popover attached to the job card, maintaining visual context of the search results without blurring the background.
+- **Contextual Delete Popover**: Replaced the full-screen modal for deleting candidates with an inline confirmation popover to prevent context-switching.
+
 ### Changed
 - **Academics.com UI Alignment**: Completely refactored the layout proportions across `JobSearch` and `History` pages. Increased maximum container widths (`max-w-5xl`, `max-w-7xl`), scaled up typography, increased internal padding, and centered content to closely match the generous academics.com design language.
 - **Action Button Alignment**: Adjusted the render order in the History Table so the primary "View" CTA stays perfectly right-aligned.
@@ -23,3 +29,7 @@ All notable changes to the MatchLens project will be documented in this file.
 
 ### Changed
 - Database Schema: Added `current_position` and `current_employer` columns to the Supabase `candidates` table.
+
+## [2026-04-30]
+### Added
+- **Initial Setup**: Project initialized and core MatchLens structure established.
