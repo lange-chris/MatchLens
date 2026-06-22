@@ -59,7 +59,7 @@ export const translations = {
       analyze: 'Lebenslauf prüfen',
       history: 'Verlauf',
       analytics: 'Statistiken',
-      jobsearch: 'Jobsuche (Talent)',
+      jobsearch: 'Jobsuche',
     },
     dashboard: {
       title: 'Dashboard',

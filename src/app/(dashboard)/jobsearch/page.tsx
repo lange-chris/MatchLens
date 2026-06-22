@@ -1,17 +1,24 @@
 "use client";
 
-import { useState, useRef, useEffect, Fragment } from "react";
-import { mockJobs, JobListing } from "@/data/mockJobs";
+import { useState, useEffect, Fragment } from "react";
+import { mockJobs } from "@/data/mockJobs";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { createClient } from "@/utils/supabase/client";
 import { ScoreRadar } from "@/components/ui/ScoreRadar";
 
 export default function JobSearchPage() {
+  const { t } = useLanguage();
+  
   const [candidates, setCandidates] = useState<any[]>([]);
   const [selectedCvUrl, setSelectedCvUrl] = useState<string>("");
   const [isMatching, setIsMatching] = useState(false);
   const [matchResults, setMatchResults] = useState<Record<string, any>>({});
   const [selectedJobIdForRadar, setSelectedJobIdForRadar] = useState<string | null>(null);
+  const [feedbackState, setFeedbackState] = useState<Record<string, 'up' | 'down' | 'submitted' | null>>({});
   
+  const [savedProfiles, setSavedProfiles] = useState<any[]>([]);
+  const [selectedProfileId, setSelectedProfileId] = useState<string>("");
+
   const supabase = createClient();
 
   useEffect(() => {
@@ -26,7 +33,20 @@ export default function JobSearchPage() {
         setCandidates(uniqueCandidates);
       }
     }
+    
+    async function fetchProfiles() {
+      const { data, error } = await supabase
+        .from('search_profiles')
+        .select('*')
+        .order('created_at', { ascending: false });
+        
+      if (!error && data) {
+        setSavedProfiles(data);
+      }
+    }
+    
     fetchCandidates();
+    fetchProfiles();
   }, [supabase]);
 
   const handleRunMatch = async () => {
@@ -58,37 +78,10 @@ export default function JobSearchPage() {
     }
   };
 
-  const selectedJobDetail = selectedJobIdForRadar ? matchResults[selectedJobIdForRadar] : null;
-
   return (
     <div className="max-w-5xl mx-auto animate-fade-in pb-20">
       <header className="mb-8">
-        <h1 className="text-[40px] font-display font-medium text-[#1a1235] mb-6">Job search</h1>
-        <div className="flex flex-col md:flex-row items-center gap-4 bg-white p-4 rounded-xl border border-border shadow-sm">
-           <div className="flex-1 w-full">
-             <label className="text-xs font-bold text-text-muted uppercase mb-1 block">Your Search Profile (CV)</label>
-             <select 
-               className="w-full bg-background border border-border rounded p-2.5 text-sm text-text-main focus:outline-none focus:border-secondary transition-all"
-               value={selectedCvUrl}
-               onChange={(e) => setSelectedCvUrl(e.target.value)}
-             >
-               <option value="" disabled>-- Select your CV to see Matches --</option>
-               {candidates.map((c) => (
-                 <option key={c.id} value={c.cv_url}>
-                   {c.name} - {c.job_title}
-                 </option>
-               ))}
-             </select>
-           </div>
-           <button 
-             onClick={handleRunMatch}
-             disabled={!selectedCvUrl || isMatching}
-             className="w-full md:w-auto px-6 py-2.5 bg-secondary text-white font-bold rounded shadow-sm hover:shadow-md disabled:opacity-50 transition-all flex items-center justify-center gap-2 h-full mt-auto"
-           >
-             {isMatching ? <span className="material-symbols-outlined animate-spin text-sm">refresh</span> : <span className="material-symbols-outlined text-sm">auto_awesome</span>}
-             {isMatching ? 'Matching...' : 'Show Match Scores'}
-           </button>
-        </div>
+        <h1 className="text-[40px] font-display font-medium text-[#1a1235] mb-6">{t.sidebar.jobsearch}</h1>
       </header>
 
       <div className="mb-8">
@@ -123,12 +116,78 @@ export default function JobSearchPage() {
       </div>
 
       <div className="flex items-center justify-between mb-4 border-b border-border pb-2">
-        <p className="text-sm font-bold text-[#1a1235]">All job offers matching your search</p>
-        <span className="material-symbols-outlined text-text-muted text-sm">swap_vert</span>
+        <p className="text-sm font-bold text-[#1a1235]">All job offers</p>
+        
+        <div className="flex items-center gap-4">
+          {/* SEARCH PROFILE FILTER UI */}
+          {savedProfiles.length > 0 && (
+             <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-border shadow-sm">
+                <span className="text-xs font-bold text-[#1a1235] flex items-center gap-1">
+                  <span className="material-symbols-outlined text-xs text-primary">filter_list</span> Apply Profile:
+                </span>
+                <select 
+                  className="bg-transparent border-none text-xs text-text-main focus:outline-none w-32 truncate"
+                  value={selectedProfileId}
+                  onChange={(e) => setSelectedProfileId(e.target.value)}
+                >
+                  <option value="">All Jobs</option>
+                  {savedProfiles.map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.name}
+                    </option>
+                  ))}
+                </select>
+             </div>
+          )}
+
+          {/* SMALL AND DISCREET CV MATCH UI */}
+          <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-border shadow-sm">
+             <span className="text-xs font-bold text-[#1a1235] flex items-center gap-1">
+               <span className="material-symbols-outlined text-xs text-secondary">auto_awesome</span> CV Match:
+             </span>
+             <select 
+               className="bg-transparent border-none text-xs text-text-main focus:outline-none w-32 truncate"
+               value={selectedCvUrl}
+               onChange={(e) => setSelectedCvUrl(e.target.value)}
+             >
+               <option value="" disabled>Select CV...</option>
+               {candidates.map((c) => (
+                 <option key={c.id} value={c.cv_url}>
+                   {c.name}
+                 </option>
+               ))}
+             </select>
+             <button 
+               onClick={handleRunMatch}
+               disabled={!selectedCvUrl || isMatching}
+               className="bg-secondary text-white text-[10px] uppercase font-bold px-3 py-1 rounded-full hover:bg-opacity-90 disabled:opacity-50 transition-colors"
+             >
+               {isMatching ? '...' : 'Match'}
+             </button>
+          </div>
+        </div>
       </div>
 
       <div className="flex flex-col gap-4">
-        {mockJobs.map((job, index) => {
+        {mockJobs.filter(job => {
+          if (!selectedProfileId) return true;
+          const profile = savedProfiles.find(p => p.id === selectedProfileId);
+          if (!profile) return true;
+          
+          const matchString = `${job.title} ${job.employer} ${job.location} ${job.employmentType.join(' ')}`.toLowerCase();
+          
+          let matchesFilters = true;
+          if (profile.filters && profile.filters.length > 0) {
+            matchesFilters = profile.filters.some((filter: string) => matchString.includes(filter.toLowerCase()));
+          }
+          
+          let matchesSearch = true;
+          if (profile.search_criterion) {
+            matchesSearch = matchString.includes(profile.search_criterion.toLowerCase());
+          }
+          
+          return matchesFilters && matchesSearch;
+        }).map((job, index) => {
            const match = matchResults[job.id];
            
            return (
@@ -182,7 +241,7 @@ export default function JobSearchPage() {
                         <p className="text-base font-bold text-secondary flex items-center gap-1">
                            <span className="material-symbols-outlined text-sm">psychology</span> Match-Analyse
                         </p>
-                        <p className="text-sm text-text-main font-medium max-w-2xl line-clamp-2 mt-1">
+                        <p className="text-sm text-text-main font-medium max-w-3xl mt-1 pr-4">
                           {match.analysis_summary}
                         </p>
                       </div>
@@ -208,14 +267,59 @@ export default function JobSearchPage() {
                            >
                              <span className="material-symbols-outlined">close</span>
                            </button>
-                           
-                           <h2 className="text-xl font-bold text-secondary mb-2 flex items-center gap-2">
-                             <span className="material-symbols-outlined">radar</span> Match-Radar
-                           </h2>
+                           <div className="flex items-center justify-between mb-2">
+                             <h2 className="text-xl font-bold text-secondary flex items-center gap-2">
+                               <span className="material-symbols-outlined">radar</span> Match-Radar
+                             </h2>
+                             <div className="flex gap-1 mr-8">
+                                <button 
+                                  onClick={() => setFeedbackState(prev => ({ ...prev, [job.id]: 'up' }))}
+                                  className={`p-1.5 rounded-full transition-colors flex items-center justify-center ${feedbackState[job.id] === 'up' ? 'bg-green-100 text-green-700' : 'bg-background text-text-muted hover:bg-gray-100'}`}
+                                  title="Guter Match"
+                                >
+                                  <span className={`material-symbols-outlined text-[18px] ${feedbackState[job.id] === 'up' ? 'filled' : ''}`}>thumb_up</span>
+                                </button>
+                                <button 
+                                  onClick={() => setFeedbackState(prev => ({ ...prev, [job.id]: 'down' }))}
+                                  className={`p-1.5 rounded-full transition-colors flex items-center justify-center ${feedbackState[job.id] === 'down' ? 'bg-red-100 text-red-700' : 'bg-background text-text-muted hover:bg-gray-100'}`}
+                                  title="Schlechter Match"
+                                >
+                                  <span className={`material-symbols-outlined text-[18px] ${feedbackState[job.id] === 'down' ? 'filled' : ''}`}>thumb_down</span>
+                                </button>
+                             </div>
+                           </div>
                            <p className="text-sm text-text-main font-medium mb-4 bg-secondary/5 p-4 rounded-xl border border-secondary/20">
                              {match.analysis_summary}
                            </p>
                            
+                           {feedbackState[job.id] === 'down' && (
+                             <div className="mb-4 bg-red-50 p-4 rounded-xl border border-red-100 animate-fade-in">
+                                <p className="text-xs font-bold text-red-800 mb-2">Warum passt diese Analyse nicht?</p>
+                                <div className="flex flex-wrap gap-2 mb-3">
+                                   <button className="text-[10px] bg-white border border-red-200 text-red-700 px-2 py-1 rounded hover:bg-red-50 transition-colors">Skills falsch eingeschätzt</button>
+                                   <button className="text-[10px] bg-white border border-red-200 text-red-700 px-2 py-1 rounded hover:bg-red-50 transition-colors">Erfahrung nicht erkannt</button>
+                                   <button className="text-[10px] bg-white border border-red-200 text-red-700 px-2 py-1 rounded hover:bg-red-50 transition-colors">Falsches Karrierelevel</button>
+                                   <button className="text-[10px] bg-white border border-red-200 text-red-700 px-2 py-1 rounded hover:bg-red-50 transition-colors">Fachbereich verfehlt</button>
+                                   <button className="text-[10px] bg-white border border-red-200 text-red-700 px-2 py-1 rounded hover:bg-red-50 transition-colors">Ort/Remote falsch gewertet</button>
+                                   <button className="text-[10px] bg-white border border-red-200 text-red-700 px-2 py-1 rounded hover:bg-red-50 transition-colors">Völlig irrelevanter Job</button>
+                                </div>
+                                <input type="text" placeholder="Was genau fehlt oder ist falsch? (Optional)" className="w-full text-xs p-2 rounded border border-red-200 bg-white mb-2" />
+                                <button 
+                                  onClick={() => setFeedbackState(prev => ({ ...prev, [job.id]: 'submitted' }))}
+                                  className="w-full bg-red-600 text-white text-xs font-bold py-2 rounded shadow-sm hover:bg-red-700 transition-colors"
+                                >
+                                  Feedback senden
+                                </button>
+                             </div>
+                           )}
+
+                           {feedbackState[job.id] === 'submitted' && (
+                             <div className="mb-4 bg-green-50 p-4 rounded-xl border border-green-100 flex items-center gap-2 animate-fade-in">
+                                <span className="material-symbols-outlined text-green-600">check_circle</span>
+                                <p className="text-xs font-bold text-green-800">Danke! Wir passen den Algorithmus an.</p>
+                             </div>
+                           )}
+
                            <div className="flex justify-center border border-border rounded-xl p-2 bg-background/50 h-64">
                              <ScoreRadar categoryScores={match.category_scores} overallScore={match.score} />
                            </div>
@@ -225,7 +329,7 @@ export default function JobSearchPage() {
                  </div>
                )}
              </div>
-             {/* Inject Banner after 3rd job */}
+             
              {index === 2 && (
                <div key="banner" className="bg-[#7BA79B] rounded-xl p-6 shadow-sm flex items-center justify-between text-white mt-2">
                  <div className="flex items-center gap-4">
@@ -240,12 +344,10 @@ export default function JobSearchPage() {
                  </button>
                </div>
              )}
-           </Fragment>
+             </Fragment>
            );
         })}
       </div>
-
-      {/* Modal removed in favor of inline popover */}
     </div>
   );
 }

@@ -2,11 +2,12 @@
 
 All notable changes to the MatchLens project will be documented in this file.
 
-## [Unreleased] - 2026-06-18
+## [Unreleased] - 2026-06-22
 ### Added
-- **Top Navigation**: Replaced the vertical sidebar with a horizontal TopNav to mirror the academics.com navigation structure and free up horizontal screen space.
-- **Match-Radar Popover**: The "Radar" modal in the job search is now a sleek, inline popover attached to the job card, maintaining visual context of the search results without blurring the background.
-- **Contextual Delete Popover**: Replaced the full-screen modal for deleting candidates with an inline confirmation popover to prevent context-switching.
+- **Search Profile Creation & Matching**: Implemented the `SearchProfileBuilder` with an expandable accordion UI, allowing users to save their job preferences. Added logic to hard-filter `mockJobs` based on the selected search profile.
+- **Custom Toast Notifications**: Replaced browser native alerts with a modern, animated custom Toast notification for profile saving actions.
+- **Real Mock Data**: Scraped the latest job offers directly from academics.com and populated the `mockJobs.ts` with real-world academic listings to improve prototype realism.
+- **AI Feedback Mechanism**: Built an interactive thumbs up/down feedback feature into the Match-Radar modal. Clicking 'thumbs down' expands a contextual micro-survey with user-centric critique pills (e.g. "Skills falsch eingeschätzt", "Ort/Remote falsch gewertet") to gather training data for the matching algorithm.
 
 ### Changed
 - **Academics.com UI Alignment**: Completely refactored the layout proportions across `JobSearch` and `History` pages. Increased maximum container widths (`max-w-5xl`, `max-w-7xl`), scaled up typography, increased internal padding, and centered content to closely match the generous academics.com design language.

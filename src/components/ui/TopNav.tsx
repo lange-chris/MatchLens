@@ -70,7 +70,7 @@ export function TopNav() {
       </nav>
 
       {/* Right: Actions */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 relative">
         {/* Language Switch */}
         <div className="hidden sm:flex bg-[#f0f0f0] rounded-full p-1">
            <button 
@@ -87,15 +87,32 @@ export function TopNav() {
            </button>
         </div>
 
-        {/* User / Logout */}
-        <div className="flex items-center gap-3">
+        {/* User Dropdown */}
+        <div className="relative group">
           <button
-            onClick={handleLogout}
-            disabled={isPending}
-            className="bg-[#2D1B4E] text-white px-4 py-1.5 rounded-full text-xs font-bold hover:bg-opacity-90 transition-colors shadow-sm disabled:opacity-50"
+            className="bg-[#2D1B4E] text-white px-4 py-1.5 rounded-full text-xs font-bold hover:bg-opacity-90 transition-colors shadow-sm disabled:opacity-50 flex items-center gap-2"
           >
-            {isPending ? '...' : 'My MatchLens'}
+            My MatchLens <span className="material-symbols-outlined text-[14px]">arrow_drop_down</span>
           </button>
+          
+          <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden">
+            <div className="py-2">
+              <Link 
+                href="/profile" 
+                className="block px-4 py-2 text-sm text-[#1a1235] hover:bg-gray-50 hover:text-secondary font-medium"
+              >
+                Search Profile
+              </Link>
+              <div className="h-[1px] bg-border my-1" />
+              <button
+                onClick={handleLogout}
+                disabled={isPending}
+                className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 font-medium"
+              >
+                {isPending ? 'Logging out...' : 'Logout'}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </header>
