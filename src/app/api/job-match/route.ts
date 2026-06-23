@@ -74,14 +74,35 @@ Description: ${job.descriptionText}
       }
     `;
 
-    const result = await model.generateContent(promptText);
+    let result;
+    let retries = 3;
+    while (retries > 0) {
+      try {
+        result = await model.generateContent(promptText);
+        break;
+      } catch (err: any) {
+        console.warn(`Gemini API error (retries left: ${retries - 1}):`, err.message);
+        if (err.message && err.message.includes('503')) {
+          retries--;
+          if (retries === 0) throw err;
+          await new Promise(resolve => setTimeout(resolve, 2000));
+        } else {
+          throw err;
+        }
+      }
+    }
+
+    if (!result) {
+      throw new Error("Failed to generate content after retries.");
+    }
+
     const responseText = result.response.text();
     
     let cleanJson = responseText.trim();
-    if (cleanJson.startsWith('\`\`\`json')) {
-      cleanJson = cleanJson.replace(/^\`\`\`json/, '').replace(/\`\`\`$/, '').trim();
-    } else if (cleanJson.startsWith('\`\`\`')) {
-      cleanJson = cleanJson.replace(/^\`\`\`/, '').replace(/\`\`\`$/, '').trim();
+    if (cleanJson.startsWith('```json')) {
+      cleanJson = cleanJson.replace(/^```json/, '').replace(/```$/, '').trim();
+    } else if (cleanJson.startsWith('```')) {
+      cleanJson = cleanJson.replace(/^```/, '').replace(/```$/, '').trim();
     }
 
     const parsedData = JSON.parse(cleanJson);
